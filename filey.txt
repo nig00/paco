@@ -1,0 +1,189 @@
+package myframe;
+
+/**
+ * Created by ITM on 13/10/2016.
+ */
+
+import java.io.*;
+
+
+/**
+ * Created by ITM on 13/10/2016.
+ */
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.lang.reflect.Array;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.*;
+
+
+class myframe1 extends JFrame implements ActionListener
+{
+    JButton b1,b2,b3;
+    JTextField tx,tx1,tx2;
+    JLabel l1,l2,l3,l4;
+    Container c;
+    myframe1()
+    {
+        c=getContentPane();
+        c.setBackground(Color.white);
+        c.setLayout(null);
+
+//        l1=new JLabel("enter words ");
+//       l1.setBounds(50,50,150,50);
+//        l1.setForeground(Color.BLACK);
+//        c.add(l1);
+//================================================
+        l3=new JLabel("Reversing Words Assigment");
+       l3.setBounds(125,40,100,0);
+        l3.setForeground(Color.blue);
+        c.add(l3);
+
+        tx=new JTextField();
+        tx.setBounds(200,10,150,30);
+        c.add(tx);
+
+
+
+        l2=new JLabel("conternt from file");
+        l2.setBounds(0,60,140,50);
+        l2.setForeground(Color.blue);
+        c.add(l2);
+
+        tx1=new JTextField();
+        tx1.setBounds(100,100,300,200);
+        c.add(tx1);
+
+
+//        l4=new JLabel(" from file");
+//        l4.setBounds(50,150,50,50);
+//        l4.setForeground(Color.red);
+//        c.add(l4);
+
+
+        tx2=new JTextField();
+        tx2.setBounds(200,200,200,200);
+        c.add(tx2);
+
+
+
+
+        b1=new JButton("reverse");
+        b1.addActionListener(this);
+        b1.setBounds(100,300,100,100);
+        c.add(b1);
+
+        b2=new JButton("Cancel");
+        b2.addActionListener(this);
+        b2.setBounds(600,50,100,100);
+        c.add(b2);
+
+
+        tx2=new JTextField();
+      tx2.setBounds(100,400,350,180);
+         c.add(tx2);
+
+
+
+
+        b3=new JButton("pair");
+        b3.addActionListener(this);
+        b3.setBounds(100,580,100,50);
+        c.add(b3);
+
+    }
+
+    public void actionPerformed(ActionEvent ae) {
+
+        String str = ae.getActionCommand ();
+
+      String st = ae.getActionCommand ();
+
+        BufferedReader in = null;
+        try {
+            in = new BufferedReader (new FileReader ("C:/pato/yoyo.txt"));//file path
+        } catch (FileNotFoundException e) {
+            e.printStackTrace ();
+        }
+        String str2;
+
+        ArrayList<String> list = new ArrayList<String > ();
+        try {
+            while((str2 = in.readLine()) != null){
+                list.add(str2);
+            }
+        } catch (IOException e) {
+            e.printStackTrace ();
+        }
+
+        final String newline = "\n";
+        String[] w = list.toArray(new String[0]);
+        //-----------------------
+        String[] words = (" welcome to java 2016 " + " " + " \n").split ("");
+
+
+        String rev = "\n";
+        if ((str == "reverse")) {
+
+            for (int i = words.length - 1; i >= 0; i--) {
+                rev += words[i];
+            }
+            while (!rev.isEmpty()) {
+                // System.out.print(sss.pop ());
+
+
+                //System.out.print(" ");
+
+                tx1.setText(String.valueOf(rev));
+                tx2.setText(String.valueOf(rev));
+
+
+//      if(st="pair") {
+//
+//
+//          tx2.setText(String.valueOf(rev));
+//      }
+            }
+        }
+        else {
+            if (str == "Cancel") {
+                System.exit(0);
+            }
+        }
+
+    }
+
+
+    //-------------------------------------------------------------------
+/*private class TextReader extends SwingWorker <StringBuilder, SwingWorkerData> {
+public TextReader(File file) {
+this.file = file;
+        }
+
+// the following method executes in the worker thread; it doesn't touch
+        // Swing components
+        @Override
+        public StringBuilder doInBackground() throws IOException, InterruptedException {
+int  InitLineNum = 0;
+            Scanner in = new Scanner(new FileInputStream(file));
+while (in.hasNextLine()) {
+                String line = in.nextLine();
+                InitLineNum++;
+text.append(line);
+text.append("\n");
+                SwingWorkerData data = new SwingWorkerData();
+                data.number = InitLineNum;
+                data.line = line;
+                publish(data);
+                Thread.sleep(1);//Thread  waiting for the next task
+
+            }
+return text;
+        }
+*/
+
+
+}
